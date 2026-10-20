@@ -3235,6 +3235,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
             
             <form id="recruit-form" class="card glass-card form-wrapper fade-up">
                 <div class="form-grid">
+                    <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"><label>웹사이트<input type="text" id="website" tabindex="-1" autocomplete="off"></label></div>
                     <div class="floating-group">
                         <input type="text" id="name" class="floating-input" placeholder=" " required>
                         <label class="floating-label">이름 *</label>
@@ -3300,7 +3301,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
                         <p class="consent-detail">수집 항목: 이름, 연락처, 이메일, 경력, 소속, 관심 분야, 상담 희망 시간 · 이용 목적: 합류 상담 연락 · 보유 기간: 상담 목적 달성 후 지체 없이 파기. 동의를 거부할 수 있으나, 거부 시 상담 신청이 제한됩니다.</p>
                     </div>
                 </div>
-                <p id="form-msg" class="form-msg" hidden>미리보기 페이지라 신청이 접수되지 않았습니다. 실제 사이트 배포 후에는 이 버튼으로 바로 접수됩니다.</p>
+                <p id="form-msg" class="form-msg" role="status" aria-live="polite" hidden></p>
                 <div class="form-submit-wrapper">
                     <button type="submit" class="btn btn-solid-blue btn-lg btn-block">
                         <span>지원 상담 신청</span>
@@ -3420,7 +3421,37 @@ window.toggleExpand = function(targetId, btnEl) {
     window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
     document.querySelectorAll('.growth-card').forEach(el => requestAnimationFrame(() => el.classList.add('visible')));
     const form = document.getElementById('recruit-form');
-    form.addEventListener('submit', e => { e.preventDefault(); const m = document.getElementById('form-msg'); m.hidden = false; m.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+    form.addEventListener('submit', async e => {
+        e.preventDefault();
+        const m = document.getElementById('form-msg');
+        const btn = form.querySelector('button[type="submit"]');
+        const show = t => { m.textContent = t; m.hidden = false; m.scrollIntoView({ behavior: 'smooth', block: 'center' }); };
+        if (btn.disabled) return;
+        const v = id => (document.getElementById(id) || {}).value || '';
+        const checked = n => Array.from(form.querySelectorAll('input[name="' + n + '"]:checked')).map(x => x.value);
+        const body = new URLSearchParams({
+            name: v('name').trim(),
+            phone: v('phone').replace(/[^0-9]/g, ''),
+            experience: v('experience'),
+            affiliation: v('affiliation'),
+            email: v('email').trim(),
+            interests: checked('interests').join(', '),
+            preferredTime: checked('preferredTime').join(', '),
+            message: v('message').trim(),
+            privacyConsent: document.getElementById('privacyConsent').checked ? 'Y' : 'N',
+            website: v('website')
+        });
+        btn.disabled = true;
+        try {
+            await fetch('https://script.google.com/macros/s/AKfycbxJZXtsyFT1_CAJi8zPLvJfVgGxTj5aaDfBW0Kf7IL8s0zFw-COaR7ZxqDyZbePe0RVVw/exec', { method: 'POST', mode: 'no-cors', body });
+            form.reset();
+            show('신청이 접수되었습니다. 확인 후 입력하신 연락처로 안내드리겠습니다.');
+        } catch (err) {
+            show('접수 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+        } finally {
+            btn.disabled = false;
+        }
+    });
     initLightbox();
     document.querySelectorAll('.office-card').forEach(c => c.querySelector('.office-select').addEventListener('click', () => { document.querySelectorAll('.office-card').forEach(x => x.classList.remove('is-active')); c.classList.add('is-active'); }));
 })();
