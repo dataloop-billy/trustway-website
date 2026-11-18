@@ -2432,12 +2432,13 @@ body { background: var(--bg-main); color: var(--text-main); font-family: var(--f
 a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--blue-primary); outline-offset: 3px; }
 @media (max-width: 768px) { .hero-section { padding: 8rem 0 4rem; } .nav-actions .nav-btn { padding: 0.5rem 1rem; font-size: 0.85rem; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
-.stat-footnote { margin-top: 0.6rem; font-size: 0.85rem; line-height: 1.5; color: var(--text-muted, #64748B); }
-.recruit-notice { margin-top: 1.5rem; padding: 1.5rem 1.75rem; background: #FFFFFF; border: 1px solid rgba(11, 27, 53, 0.12); border-radius: 16px; color: var(--ink, #0B1B35); font-size: 0.9rem; line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere; }
-.recruit-notice-lead { font-weight: 700; margin: 0 0 0.75rem; }
+.stat-footnote, .stat-card p.stat-footnote { margin-top: 0.6rem; font-size: 0.72rem; line-height: 1.5; color: var(--text-muted, #64748B); }
+.recruit-notice { margin-top: 1.5rem; padding: 1rem 1.25rem; background: #FFFFFF; border: 1px solid rgba(11, 27, 53, 0.12); border-radius: 16px; color: #64748B; font-size: 0.72rem; line-height: 1.6; word-break: keep-all; overflow-wrap: anywhere; }
+.recruit-notice p, .recruit-notice li { font-size: 0.72rem; line-height: 1.6; color: inherit; }
+.recruit-notice-lead { font-weight: 700; margin: 0 0 0.5rem; }
 .recruit-notice ul { list-style: none; margin: 0; padding: 0; }
 .recruit-notice li { margin: 0.2rem 0; padding-left: 0.9em; text-indent: -0.9em; }
-@media (max-width: 768px) { .recruit-notice { padding: 1.25rem 1.1rem; } }
+@media (max-width: 768px) { .recruit-notice { padding: 0.9rem 1rem; } }
 
 </style>
 
