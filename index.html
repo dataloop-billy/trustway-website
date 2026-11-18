@@ -2432,6 +2432,12 @@ body { background: var(--bg-main); color: var(--text-main); font-family: var(--f
 a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--blue-primary); outline-offset: 3px; }
 @media (max-width: 768px) { .hero-section { padding: 8rem 0 4rem; } .nav-actions .nav-btn { padding: 0.5rem 1rem; font-size: 0.85rem; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+.stat-footnote { margin-top: 0.6rem; font-size: 0.85rem; line-height: 1.5; color: var(--text-muted, #64748B); }
+.recruit-notice { margin-top: 1.5rem; padding: 1.5rem 1.75rem; background: #FFFFFF; border: 1px solid rgba(11, 27, 53, 0.12); border-radius: 16px; color: var(--ink, #0B1B35); font-size: 0.9rem; line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere; }
+.recruit-notice-lead { font-weight: 700; margin: 0 0 0.75rem; }
+.recruit-notice ul { list-style: none; margin: 0; padding: 0; }
+.recruit-notice li { margin: 0.2rem 0; padding-left: 0.9em; text-indent: -0.9em; }
+@media (max-width: 768px) { .recruit-notice { padding: 1.25rem 1.1rem; } }
 
 </style>
 
@@ -2594,8 +2600,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
                         <p style="margin-top: 0.5rem; line-height: 1.6;">무분별하게 모집하지 않습니다.<br>사람의 수보다 성장의 밀도에 집중합니다.</p>
                     </div>
                     <div class="card glass-card stat-card" style="grid-column: span 2; padding: 2.5rem 2rem;">
-                        <h3 class="blue-text" style="font-size: 2.5rem;">142만원</h3>
-                        <p style="margin-top: 0.5rem; line-height: 1.6;">현재 소속 FA 1인당 평균 생산성<br>교육과 DB 시스템이 만든 실제 생산성</p>
+                        <h3 class="blue-text" style="font-size: 2.5rem;">173만원</h3>
+                        <p style="margin-top: 0.5rem; line-height: 1.6;">1인당 평균 월 생산성<br>교육과 DB 시스템이 만든 실제 생산성</p>
+                        <p class="stat-footnote">※ 2025년 12월 기준, 재적 FA 대상 집계</p>
                     </div>
                 </div>
             </div>
@@ -3324,6 +3331,18 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
                     </button>
                 </div>
             </form>
+            <div class="recruit-notice">
+                <p class="recruit-notice-lead">'보험업감독규정 제 4-32조 제5항에서 정한 비율(초년도 수수료 1,200%룰)의 범위를 준수하여 분할지급'</p>
+                <ul>
+                    <li>- 회사명 : (주)글로벌금융판매 / 제 2009091278호</li>
+                    <li>- 소속명 : 트러스트웨이</li>
+                    <li>- 고용주체 : 채용</li>
+                    <li>- 영업형태 : 대면</li>
+                    <li>- 담당자명, 연락처 : 마케팅팀, 02-6958-5689</li>
+                    <li>- 근무형태 : 프리랜서, 위촉직, 보험업법상 보험설계사를 모집하는 것으로 정규 또는 비정규직원 채용과는 무관합니다.</li>
+                    <li>- 본 채용 공고의 형태는 위촉직 보험설계사이며, 영업 형태는 대면 영업에 해당됩니다.</li>
+                </ul>
+            </div>
         </div>
     </section>
 
